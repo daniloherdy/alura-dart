@@ -2,37 +2,53 @@ import 'cliente.dart';
 
 class ContaCorrente {
   Cliente titular;
-  int agencia = 145;
+  int _agencia = 145;
+  get agencia => _agencia;
+  set agencia(int novaAgencia) {_agencia = novaAgencia;}
+
   int conta;
-  double saldo = 0.0;
+  double _saldo = 0.0;
   double chequeEspecial = -100.0;
+
+  get saldo {
+    return _saldo;
+  }
+
+  set saldo(double novoSaldo) {
+    if (novoSaldo >= chequeEspecial) {
+      _saldo = novoSaldo;
+    } else {
+      print('Erro! Tentei modificador o valor de saldo para um valor menor que o cheque especial');
+    }
+
+  }
 
   bool saque(double valorSaque) {
     if (!verificaSaldo(valorSaque)) {
       return false;
     } else {
-      saldo -= valorSaque;
+      _saldo -= valorSaque;
       return true;
     }
   }
 
   double deposito(double valorDeposito) {
-    saldo += valorDeposito;
-    return saldo;
+    _saldo += valorDeposito;
+    return _saldo;
   }
 
   bool transferencia(double valorTransferencia, ContaCorrente contaDestino) {
     if (!verificaSaldo(valorTransferencia)) {
       return false;
     } else {
-      saldo -= valorTransferencia;
+      _saldo -= valorTransferencia;
       contaDestino.deposito(valorTransferencia);
       return true;
     }
   }
 
   bool verificaSaldo(double valor) {
-    if (saldo - valor < chequeEspecial) {
+    if (_saldo - valor < chequeEspecial) {
       print('Sem saldo suficiente');
       return false;
     } else {
