@@ -1,14 +1,25 @@
 import 'cliente.dart';
 
 class ContaCorrente {
+  
+  ContaCorrente(int novaAgencia,this.conta) {
+    if (novaAgencia > 0) _agencia = novaAgencia;
+    totalContaCorrentes++;
+  }
+  
+  static int totalContaCorrentes = 0;
+
   Cliente titular;
   int _agencia = 145;
   get agencia => _agencia;
-  set agencia(int novaAgencia) {_agencia = novaAgencia;}
+  set agencia(int novaAgencia) {
+    if (novaAgencia > 0) _agencia = novaAgencia;
+  }
 
   int conta;
   double _saldo = 0.0;
   double chequeEspecial = -100.0;
+  
 
   get saldo {
     return _saldo;
@@ -18,9 +29,9 @@ class ContaCorrente {
     if (novoSaldo >= chequeEspecial) {
       _saldo = novoSaldo;
     } else {
-      print('Erro! Tentei modificador o valor de saldo para um valor menor que o cheque especial');
+      print(
+          'Erro! Tentei modificador o valor de saldo para um valor menor que o cheque especial');
     }
-
   }
 
   bool saque(double valorSaque) {

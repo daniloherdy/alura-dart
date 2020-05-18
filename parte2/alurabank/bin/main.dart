@@ -2,7 +2,7 @@ import '../lib/cliente.dart';
 import '../lib/contaCorrente.dart';
 
 void main() {
-  ContaCorrente conta = ContaCorrente();
+  ContaCorrente conta = ContaCorrente(-123,123);
   
   Cliente cliente1 =  Cliente()
   ..nome = 'Danilo'
