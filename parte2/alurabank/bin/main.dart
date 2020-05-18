@@ -10,7 +10,7 @@ void main() {
   ..profissao = 'A';
 
   conta.titular = cliente1;
-  conta.saque(200.0);
+  conta.saldo = -101;
 
-  print('Saldo de ${conta.titular}: ${conta.saldo}');
+  
 }
